@@ -1,0 +1,149 @@
+# Author @patriciogv - 2015
+
+import:
+    - https://tangrams.github.io/blocks/functions/aastep.yaml
+    - https://tangrams.github.io/blocks/functions/pulse.yaml
+    - https://tangrams.github.io/blocks/patterns/stripes.yaml
+    - https://tangrams.github.io/blocks/space/screen.yaml
+    - https://www.nextzen.org/carto/refill-style/refill-style.zip
+    - https://www.nextzen.org/carto/refill-style/themes/label-4.zip
+    - https://www.nextzen.org/carto/refill-style/themes/terrain-shading-dark.zip
+
+sources:
+    nextzen:
+        type: MVT
+        # url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
+        url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.mvt
+        max_zoom: 16
+        url_params:
+            api_key: DpCrhQqsR2igQPEINRTfcw
+    mitchells-esmerelda-elrio:
+        type: GeoJSON
+        url: https://xyz.api.here.com/hub/spaces/mtZU016w/tile/web/{z}_{x}_{y}
+        url_params:
+            clip: true
+            access_token: AHhvWN8rE51rVFo8FVMI7TE
+    elrio-esmerelda-mitchells:
+        type: GeoJSON
+        url: https://xyz.api.here.com/hub/spaces/fkG1x5Gs/tile/web/{z}_{x}_{y}
+        url_params:
+            clip: true
+            access_token: AHhvWN8rE51rVFo8FVMI7TE
+
+            
+    stops:
+        type: GeoJSON
+        url: https://xyz.api.here.com/hub/spaces/WxKn6nR0/tile/web/{z}_{x}_{y}
+        url_params:
+            clip: true
+            access_token: AHhvWN8rE51rVFo8FVMI7TE
+    alternates:
+        type: GeoJSON
+        url: https://xyz.api.here.com/hub/spaces/w99fEbeg/tile/web/{z}_{x}_{y}
+        url_params:
+            clip: true
+            access_token: AHhvWN8rE51rVFo8FVMI7TE
+
+        
+
+scene:
+    background:
+        color: white
+
+cameras:
+    cam:
+        type: flat
+
+global:
+    order: function () { return feature.sort_rank; }
+
+
+styles:
+
+    ants:
+        base: lines
+        blend: overlay
+        texcoords: true
+        animated: true
+        shaders:
+            blocks:
+                color: |
+                    color.a = step(.5,fract((u_time/2.)-v_texcoord.y*.25));
+    slow_ants:
+        base: lines
+        blend: overlay
+        texcoords: true
+        animated: true
+        shaders:
+            blocks:
+                color: |
+                    color.a = step(.5,fract(u_time/2.-v_texcoord.y*.35));
+    reverse_ants:
+        base: lines
+        blend: overlay
+        texcoords: true
+        animated: true
+        shaders:
+            blocks:
+                color: |
+                    color.a = step(.5,fract(u_time+v_texcoord.y*.5));
+    _text:
+        base: text
+        blend: overlay
+        blend_order: 1
+        
+layers:
+    stops:
+        data: { source: stops}
+        draw:
+            points:
+                collide: false
+                color: [0,1,0,0.75]
+                outline: 
+                    color: black
+                    width: 2px
+                size: 25px
+                text:
+                    collide: false
+                    # text_source: name
+                    font:
+                        size: 16px
+                        fill: green
+                        stroke:
+                            color: white
+                            width: 4px
+    alternates:
+        data: { source: alternates}
+        draw:
+            points:
+                collide: false
+                color: [1,1,0,0.75]
+                outline: 
+                    color: black
+                    width: 2px
+                size: 16px
+                text:
+                    collide: false
+                    # text_source: name
+                    font:
+                        size: 12px
+                        fill: green
+                        stroke:
+                            color: white
+                            width: 4px
+
+    mitchells-esmerelda-elrio:
+        data: { source: mitchells-esmerelda-elrio}
+        draw:
+            ants:
+                order: 600
+                color: [0.645, 0.139, 0.102]
+                width: 5px
+
+    elrio-esmerelda-mitchells:
+        data: { source: elrio-esmerelda-mitchells}
+        draw:
+            slow_ants:
+                order: 600
+                color: blue
+                width: 5px
