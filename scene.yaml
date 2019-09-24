@@ -10,7 +10,7 @@ import:
     - https://www.nextzen.org/carto/refill-style/themes/terrain-shading-dark.zip
 
 sources:
-    nextzen:
+    mapzen:
         type: MVT
         # url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.topojson
         url: https://tile.nextzen.org/tilezen/vector/v1/all/{z}/{x}/{y}.mvt
