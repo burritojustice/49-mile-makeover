@@ -1,10 +1,10 @@
 # Author @patriciogv - 2015
 
 import:
-    - https://tangrams.github.io/blocks/functions/aastep.yaml
-    - https://tangrams.github.io/blocks/functions/pulse.yaml
-    - https://tangrams.github.io/blocks/patterns/stripes.yaml
-    - https://tangrams.github.io/blocks/space/screen.yaml
+#     - https://tangrams.github.io/blocks/functions/aastep.yaml
+#     - https://tangrams.github.io/blocks/functions/pulse.yaml
+#     - https://tangrams.github.io/blocks/patterns/stripes.yaml
+#     - https://tangrams.github.io/blocks/space/screen.yaml
     - https://www.nextzen.org/carto/refill-style/refill-style.zip
     - https://www.nextzen.org/carto/refill-style/themes/label-4.zip
     - https://www.nextzen.org/carto/refill-style/themes/terrain-shading-dark.zip
