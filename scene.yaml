@@ -26,8 +26,9 @@ sources:
     elrio-esmerelda-mitchells:
         type: GeoJSON
         url: https://xyz.api.here.com/hub/spaces/fkG1x5Gs/tile/web/{z}_{x}_{y}
+        url: https://xyz.api.here.com/hub/spaces/fkG1x5Gs/search
         url_params:
-            clip: true
+#             clip: true
             access_token: AHhvWN8rE51rVFo8FVMI7TE   
     stops:
         type: GeoJSON
